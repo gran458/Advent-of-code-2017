@@ -12,6 +12,14 @@ public class Day02 {
 		 * value; the checksum is the sum of all of these differences.
 		 */
 		
+		/*
+		 * It sounds like the goal is to find the only two numbers in each 
+		 * row where one evenly divides the other - that is, where the result 
+		 * of the division operation is a whole number. They would like you 
+		 * to find those numbers on each line, divide them, and add up each 
+		 * line's result.
+		 */
+		
 		String input = "3751	3769	2769	2039	2794	240	3579	1228	4291	220	324	3960	211	1346	237	1586\n" + 
 				"550	589	538	110	167	567	99	203	524	288	500	111	118	185	505	74\n" + 
 				"2127	1904	199	221	1201	250	1119	377	1633	1801	2011	1794	394	238	206	680\n" + 
@@ -47,7 +55,15 @@ public class Day02 {
 			}
 			
 			Arrays.sort(num);
-			checksum += (num[num.length-1] - num[0]);
+			
+			for (int j = 0; j < num.length; j++) {
+				for (int k = j+1; k < num.length; k++) {
+					if (num[k] % num[j] == 0) {
+						checksum += (num[k] / num[j]);
+						break;
+					}
+				}
+			}
 		}
 		
 		System.out.println(checksum);
